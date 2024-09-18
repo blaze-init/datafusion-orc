@@ -124,7 +124,7 @@ impl<T: ByteArrayType> GenericByteArrayDecoder<T> {
             .take(total_length)
             .read_to_end(&mut bytes)
             .context(IoSnafu)?;
-        let bytes = Buffer::from(bytes);
+        let bytes = Buffer::from_vec(bytes);
         let lengths = populate_lengths_with_nulls(lengths, batch_size, &present);
         let offsets = OffsetBuffer::<T::Offset>::from_lengths(lengths);
         let null_buffer = create_null_buffer(present);
