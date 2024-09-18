@@ -72,6 +72,10 @@ impl DisplayAs for OrcExec {
 }
 
 impl ExecutionPlan for OrcExec {
+    fn name(&self) -> &str {
+        "OrcExec"
+    }
+
     fn as_any(&self) -> &dyn Any {
         self
     }
