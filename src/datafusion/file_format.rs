@@ -6,8 +6,10 @@ use std::sync::Arc;
 use crate::reader::metadata::read_metadata_async;
 use arrow::datatypes::Schema;
 use datafusion::arrow::datatypes::SchemaRef;
-use datafusion::common::Statistics;
+use datafusion::common::{DataFusionError, Statistics};
+use datafusion::common::parsers::CompressionTypeVariant;
 use datafusion::datasource::file_format::FileFormat;
+use datafusion::datasource::file_format::file_compression_type::FileCompressionType;
 use datafusion::datasource::physical_plan::FileScanConfig;
 use datafusion::error::Result;
 use datafusion::execution::context::SessionState;
@@ -47,6 +49,24 @@ impl FileFormat for OrcFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+
+    fn get_ext(&self) -> String {
+        format!("orc")
+    }
+
+    fn get_ext_with_compression(
+        &self,
+        file_compression_type: &FileCompressionType,
+    ) -> Result<String> {
+        let ext = self.get_ext();
+        match file_compression_type.get_variant() {
+            CompressionTypeVariant::UNCOMPRESSED => Ok(ext),
+            _ => Err(DataFusionError::Internal(
+                "Orc FileFormat does not support compression.".into(),
+            )),
+        }
+    }
+
 
     async fn infer_schema(
         &self,
