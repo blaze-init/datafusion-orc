@@ -32,7 +32,7 @@ rust-version = "1.73"
 all-features = true
 
 [dependencies]
-arrow = { git = "https://github.com/blaze-init/arrow-rs.git", rev = "1fbdc9f980aa34c7758da9db79a64248f24daf1e", features = ["prettyprint", "chrono-tz"] }
+arrow = { git = "https://github.com/blaze-init/arrow-rs.git", rev = "94ef6f608254484c0ecfc33fcef19891c4f87612", features = ["prettyprint", "chrono-tz"] }
 bytemuck = { version = "1.18.0", features = ["must_cast"] }
 bytes = "1.4"
 chrono = { version = "0.4.37", default-features = false, features = ["std"] }
@@ -68,9 +68,9 @@ clap = { version = "4.5.4", features = ["derive"], optional = true }
 opendal = { version = "0.48", optional = true, default-features = false }
 
 # datafusion support
-datafusion = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "b7876646a02401cc064657ccf17de27cfe6240ee", optional = true }
-datafusion-expr = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "b7876646a02401cc064657ccf17de27cfe6240ee", optional = true }
-datafusion-physical-expr = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "b7876646a02401cc064657ccf17de27cfe6240ee", optional = true }
+datafusion = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "0e6a0b0942cd052d8c2a3606f26d9823afc911d9", optional = true }
+datafusion-expr = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "0e6a0b0942cd052d8c2a3606f26d9823afc911d9", optional = true }
+datafusion-physical-expr = { git = "https://github.com/blaze-init/arrow-datafusion.git", rev = "0e6a0b0942cd052d8c2a3606f26d9823afc911d9", optional = true }
 object_store = { version = "0.11.0", optional = true }
 
 [dev-dependencies]
